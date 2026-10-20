@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LoanEase | Bank Loan Management System</title>
+<style>
+:root{--navy:#102a43;--blue:#1769aa;--cyan:#25b7c4;--ink:#183247;--muted:#60758a;--bg:#f4f8fc;--line:#dce6ef;--white:#fff}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.55}
+a{text-decoration:none;color:inherit}
+.topbar{background:var(--navy);color:#eaf5ff;font-size:13px;padding:8px 6%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+nav{display:flex;align-items:center;justify-content:space-between;padding:17px 6%;background:#fff;border-bottom:1px solid var(--line);gap:20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:21px;color:var(--navy)}
+.logo{height:40px;width:40px;border-radius:12px;background:linear-gradient(135deg,var(--blue),var(--cyan));color:#fff;display:grid;place-items:center;font-weight:900;font-size:19px}
+.navlinks{display:flex;align-items:center;gap:24px;color:#536b80;font-size:14px}
+.btn{display:inline-flex;justify-content:center;align-items:center;border:0;border-radius:10px;padding:12px 18px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer;transition:.2s}
+.btn:hover{background:#10558e;transform:translateY(-1px)}
+.btn.outline{background:#fff;color:var(--blue);border:1px solid #b9d1e5}
+.hero{padding:60px 6% 52px;background:radial-gradient(circle at 85% 20%,#d9f4f5 0,transparent 27%),linear-gradient(120deg,#edf5fc,#f8fbff)}
+.hero-grid{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.1fr .9fr;gap:42px;align-items:center}
+.eyebrow{display:inline-flex;gap:8px;align-items:center;color:#126f8a;background:#e0f6f6;border:1px solid #c2eded;border-radius:30px;padding:7px 12px;font-weight:700;font-size:12px;letter-spacing:.3px}
+h1{font-size:clamp(35px,4.2vw,57px);line-height:1.08;letter-spacing:-1.7px;margin:20px 0;color:var(--navy)}
+h1 span{color:var(--blue)}
+.lead{font-size:17px;color:var(--muted);max-width:580px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.trust{display:flex;gap:20px;flex-wrap:wrap;margin-top:25px;color:#526b7f;font-size:13px}
+.trust span:before{content:"✓";color:#168a70;font-weight:900;margin-right:7px}
+.hero-card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 20px 55px #18324712;position:relative}
+.card-top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.card-top h3{margin:0;color:var(--navy);font-size:18px}
+.pill{background:#e6f8ef;color:#18744c;padding:6px 10px;border-radius:30px;font-size:11px;font-weight:800}
+.balance{margin:25px 0;padding:21px;border-radius:16px;background:linear-gradient(130deg,#102a43,#1769aa);color:#fff}
+.balance small{color:#d3e7f6}.balance strong{display:block;font-size:29px;margin-top:6px}
+.mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mini{border:1px solid var(--line);padding:15px;border-radius:13px}
+.mini b{display:block;font-size:19px;color:var(--navy)}.mini small{color:var(--muted)}
+.section{padding:55px 6%;max-width:1320px;margin:auto}
+.section-head{text-align:center;max-width:720px;margin:0 auto 30px}
+.section-head h2{color:var(--navy);font-size:clamp(27px,3vw,36px);margin:0 0 10px;letter-spacing:-.6px}
+.section-head p{color:var(--muted);margin:0}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature{background:#fff;border:1px solid var(--line);border-radius:17px;padding:23px}
+.feature-icon{width:46px;height:46px;border-radius:13px;background:#e8f3fc;display:grid;place-items:center;font-size:22px;margin-bottom:15px}
+.feature h3{margin:0 0 8px;color:var(--navy);font-size:18px}.feature p{margin:0;color:var(--muted);font-size:14px}
+.apply-section{padding:55px 6%;background:#eaf2f9}
+.apply-wrap{max-width:1050px;margin:auto;display:grid;grid-template-columns:.8fr 1.2fr;gap:28px;align-items:start}
+.apply-intro{padding:20px 5px}
+.apply-intro h2{font-size:34px;line-height:1.15;color:var(--navy);margin:0 0 14px}
+.apply-intro p{color:var(--muted)}
+.steps{margin-top:25px;display:grid;gap:14px}
+.step{display:flex;gap:12px;align-items:flex-start}
+.stepnum{flex:0 0 32px;height:32px;border-radius:10px;background:#d5eaf9;color:#145b92;display:grid;place-items:center;font-weight:800}
+.step strong{display:block;color:var(--navy);font-size:14px}.step small{color:var(--muted)}
+.form-card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:26px;box-shadow:0 12px 36px #1832470b}
+.form-card h3{font-size:22px;color:var(--navy);margin:0 0 5px}.form-card .sub{font-size:13px;color:var(--muted);margin:0 0 20px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}
+label{font-size:13px;font-weight:700;color:#38536a}
+input,select,textarea{width:100%;padding:12px 13px;border:1px solid #cfdce7;border-radius:9px;font:inherit;color:var(--ink);background:#fff;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #1769aa18}
+textarea{min-height:88px;resize:vertical}
+.form-note{font-size:12px;color:var(--muted);margin:12px 0 16px}
+.submit{width:100%;font-size:15px;padding:14px}
+.status{display:none;margin-top:12px;padding:11px;border-radius:9px;background:#fff4e0;color:#7c5210;font-size:13px}
+footer{background:var(--navy);color:#d6e5f1;padding:27px 6%;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px}
+footer b{color:#fff}
+@media(max-width:850px){.hero-grid,.apply-wrap{grid-template-columns:1fr}.hero{padding-top:42px}.hero-card{max-width:600px}.features{grid-template-columns:1fr}.navlinks{gap:10px}.navlinks .hide-small{display:none}}
+@media(max-width:520px){nav{padding:14px 5%}.navlinks .btn{padding:10px 12px;font-size:12px}.hero,.section,.apply-section{padding-left:5%;padding-right:5%}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.form-card{padding:19px}.topbar{padding-left:5%;padding-right:5%}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span>Simple • Transparent • Convenient</span>
+  <span>Academic project demonstration — not a real banking service</span>
+</div>
+<nav>
+  <a class="brand" href="#"><span class="logo">L</span><span>LoanEase <small style="display:block;font-size:10px;color:#6d8295;letter-spacing:1.2px;font-weight:700">BANK LOAN MANAGEMENT</small></span></a>
+  <div class="navlinks">
+    <a class="hide-small" href="#home">Home</a>
+    <a class="hide-small" href="#features">Features</a>
+    <a class="hide-small" href="#apply">Apply for Loan</a>
+    <a class="btn" href="#apply">Get Started <span style="margin-left:8px">→</span></a>
+  </div>
+</nav>
+<main>
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div>
+      <span class="eyebrow">✦ SMARTER LOAN APPLICATIONS</span>
+      <h1>Make your next step <span>financially brighter.</span></h1>
+      <p class="lead">A simple digital experience to submit a loan application and keep application information organized in one place.</p>
+      <div class="hero-actions">
+        <a class="btn" href="#apply">Apply for a Loan <span style="margin-left:10px">→</span></a>
+        <a class="btn outline" href="#features">Explore Features</a>
+      </div>
+      <div class="trust"><span>Easy application form</span><span>Centralized records</span><span>Clear status tracking</span></div>
+    </div>
+    <div class="hero-card">
+      <div class="card-top"><h3>Application Overview</h3><span class="pill">DEMO PORTAL</span></div>
+      <div class="balance"><small>YOUR NEXT STEP STARTS HERE</small><strong>Loan Application</strong><small>Submit your details for administrator review.</small></div>
+      <div class="mini-grid">
+        <div class="mini"><b>01</b><small>Fill in your details</small></div>
+        <div class="mini"><b>02</b><small>Submit application</small></div>
+        <div class="mini"><b>03</b><small>Admin reviews</small></div>
+        <div class="mini"><b>04</b><small>Status is updated</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="section" id="features">
+  <div class="section-head"><h2>A smoother way to manage applications</h2><p>Designed to demonstrate the key features of a Java, Servlet and MySQL-based loan management system.</p></div>
+  <div class="features">
+    <article class="feature"><div class="feature-icon">▤</div><h3>Simple Application</h3><p>A clear form helps applicants provide their contact and loan details in one place.</p></article>
+    <article class="feature"><div class="feature-icon">⌁</div><h3>Organized Records</h3><p>Application information can be stored centrally in the MySQL database for review.</p></article>
+    <article class="feature"><div class="feature-icon">✓</div><h3>Status Management</h3><p>The administrator can review pending records and update their application status.</p></article>
+  </div>
+</section>
+<section class="apply-section" id="apply">
+  <div class="apply-wrap">
+    <div class="apply-intro">
+      <span class="eyebrow">GET STARTED</span>
+      <h2>Start your loan application</h2>
+      <p>Enter the requested information below. This is an academic project demo; do not enter real sensitive financial information.</p>
+      <div class="steps">
+        <div class="step"><span class="stepnum">1</span><div><strong>Provide your details</strong><small>Fill in the required fields.</small></div></div>
+        <div class="step"><span class="stepnum">2</span><div><strong>Submit for review</strong><small>Your form is sent to the project servlet.</small></div></div>
+        <div class="step"><span class="stepnum">3</span><div><strong>Administrator review</strong><small>The admin dashboard manages application status.</small></div></div>
+      </div>
+    </div>
+    <form class="form-card" action="apply" method="post" id="loanForm">
+      <h3>Loan Application Form</h3><p class="sub">Fields marked * are required.</p>
+      <div class="form-grid">
+        <div class="field"><label for="name">Full Name *</label><input id="name" name="name" type="text" placeholder="Enter full name" autocomplete="name" required></div>
+        <div class="field"><label for="email">Email Address *</label><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></div>
+
+<div class="field">
+  <label for="age">Age *</label>
+  <input id="age" name="age" type="number"
+         placeholder="Enter your age"
+         min="18" max="100" required>
+</div>
+
+        <div class="field"><label for="phone">Phone Number *</label><input id="phone" name="phone" type="tel" placeholder="Enter phone number" autocomplete="tel" required></div>
+        <div class="field"><label for="loan_amount">Loan Amount (₹) *</label><input id="loan_amount" name="loan_amount" type="number" min="1" step="1" placeholder="e.g. 250000" required></div>
+        <div class="field"><label for="monthly_income">Monthly Income (₹)</label><input id="monthly_income" name="monthly_income" type="number" min="0" step="1" placeholder="e.g. 35000"></div>
+        <div class="field"><label for="loan_purpose">Loan Purpose *</label><select id="loan_purpose" name="loan_purpose" required><option value="">Select purpose</option><option value="Education">Education</option><option value="Home">Home</option><option value="Personal">Personal</option><option value="Business">Business</option><option value="Vehicle">Vehicle</option><option value="Other">Other</option></select></div>
+        <div class="field full"><label for="address">Address</label><textarea id="address" name="address" placeholder="Enter address (optional)"></textarea></div>
+      </div>
+      <p class="form-note">Demo only: use test data. Submission requires the Java servlet to accept the field names used here.</p>
+      <button class="btn submit" type="submit">Submit Application <span style="margin-left:9px">→</span></button>
+      <div class="status" id="formStatus" role="status">If submission fails, check that the servlet mapping and form field names match your Java code.</div>
+    </form>
+  </div>
+</section>
+</main>
+<footer><span><b>LoanEase</b> — Bank Loan Management System</span><span>Java • Servlets • JDBC • MySQL</span><span>Academic demonstration project</span></footer>
+<script>
+document.getElementById('loanForm').addEventListener('submit', function () {
+  document.getElementById('formStatus').style.display = 'block';
+});
+</script>
+</body>
+</html>

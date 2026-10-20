@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Loan Management System</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #eef3f9;
+            color: #17365d;
+        }
+
+        header {
+            background: #123c69;
+            color: white;
+            text-align: center;
+            padding: 25px;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 30px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+        }q
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input, select {
+            box-sizing: border-box;
+            width: 100%;
+            padding: 12px;
+            margin-top: 7px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            background: #123c69;
+            color: white;
+            border: 0;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Bank Loan Management System</h1>
+        <p>Your Dreams, Our Support</p>
+    </header>
+
+    <div class="container">
+        <h2>Apply for a Loan</h2>
+
+        <form id="loanForm" action="apply" method="post">
+            <label>Customer Name</label>
+            <input type="text" name="customerName" required>
+
+            <label>Age</label>
+            <input type="number" name="age" min="18" required>
+
+            <label>Monthly Income (₹)</label>
+            <input type="number" name="income" min="0" required>
+
+            <label>Loan Amount (₹)</label>
+            <input type="number" name="loanAmount" min="1" required>
+
+            <label>Loan Purpose</label>
+            <select name="purpose" required>
+                <option value="">Select purpose</option>
+                <option>Education</option>
+                <option>Home</option>
+                <option>Business</option>
+                <option>Personal</option>
+            </select>
+
+            <button type="submit">Apply Now</button>
+        </form>
+
+        <p id="message"></p>
+    </div>
+
+    
+</body>
+</html>
